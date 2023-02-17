@@ -52,5 +52,10 @@ public class Fallapop {
 
     public void setCompras(ArrayList<Compra> compras) { this.compras = compras; }
 
+    public ArrayList<Usuario> getUsuarios() { return usuarios; }
+
+    public ArrayList<Producto> getProductos() { return productos; }
+
+    public ArrayList<Compra> getCompras() { return compras; }
     
 }

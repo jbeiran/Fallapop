@@ -89,7 +89,7 @@ public class FallapopApp {
         Fallapop fp = new Fallapop();
         inicializar_datos(fp);
 
-        System.out.println("Usuarios: " + fp.numUsuarios().size());
+        /*System.out.println("Usuarios: " + fp.numUsuarios().size());
 
         System.out.println("Productos: " + fp.numProductos().size());
 
@@ -117,12 +117,10 @@ public class FallapopApp {
 
         System.out.println("Producto 1: " + fp.verProducto(0).getNombre());
 
-        System.out.println("Compra 1: " + fp.verCompra(0).getEstado());
+        System.out.println("Compra 1: " + fp.verCompra(0).getEstado());*/
 
-
-    
         
-        FallapopForm fallapopForm = new FallapopForm();
+        FallapopForm fallapopForm = new FallapopForm(fp);
         fallapopForm.setVisible(true);
     
     }   
