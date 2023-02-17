@@ -4,26 +4,74 @@
  */
 package gui;
 
+import java.awt.CardLayout;
+import java.awt.Container;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import model.Fallapop;
+import gui.Login;
+import gui.Register;
 import model.Usuario;
 
 /**
  *
  * @author josem
  */
-public class FallapopForm extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
     
     private Fallapop model;
     private ArrayList<Usuario> listUsuarios;
+
+    /* Estos paneles son para hacer login o register */
+    private JPanel login, register;
     
-    public FallapopForm() {
-        initComponents();
-    }
-    
-    public FallapopForm(Fallapop m){
-        initComponents();
+    public MainFrame(Fallapop m){
+        // initComponents();
+        
+
+        /* En lugar de construir los componentes vamos a crear un Login Pane*/
+
+        CardLayout cardLayout = new CardLayout();
+
+        JPanel contentPane = new JPanel();
+        this.setContentPane(contentPane);
+        contentPane.setLayout(cardLayout);
+
+        login = new Login(
+                (e)  -> {
+                    System.out.println("se pulso el login");
+                },
+
+                (e) -> {
+                    System.out.println("se pulso el go to register");
+
+                    /* Actualizamos el panel que se está mostrando en el Layout */
+                    cardLayout.show(contentPane, "register");
+                }
+        );
+
+        register = new Register(
+                (e) -> {
+                    System.out.println("Hacer cosas de registrarse");
+                },
+
+                (e) -> {
+                    System.out.println("Se pulso volver a login");
+
+                    /* Actualizamos el panel que se está mostrando */ 
+                    cardLayout.show(contentPane, "login");
+                }
+        );
+
+        contentPane.add(login, "login");
+        contentPane.add(register, "register");
+
+        /* Empezamos mostrando el login */
+
+        cardLayout.show(contentPane, "login");
+
+
         this.model = m;
 
         listUsuarios = new ArrayList<>();

@@ -1,6 +1,6 @@
 package app;
 
-import gui.FallapopForm;
+import gui.MainFrame;
 import model.Compra;
 import model.Direccion;
 import model.Envio;
@@ -120,8 +120,7 @@ public class FallapopApp {
         System.out.println("Compra 1: " + fp.verCompra(0).getEstado());*/
 
         
-        FallapopForm fallapopForm = new FallapopForm(fp);
-        fallapopForm.setVisible(true);
-    
+        MainFrame mainFrame = new MainFrame(fp);
+        mainFrame.setVisible(true);
     }   
 }
