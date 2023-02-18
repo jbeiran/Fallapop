@@ -1,13 +1,10 @@
 package model;
 
-public class Monedero extends MetodoDePago {
 
-    public Monedero(Double saldo) {
-        super(saldo);
-    }
+public class Monedero {
+    private double sueldo;
 
-    @Override
-    public void pagar(Double monto) {
-        saldo -= monto;
+    public Monedero(double sueldo) {
+        this.sueldo = sueldo;
     }
 }

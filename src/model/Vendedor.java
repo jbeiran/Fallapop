@@ -1,38 +1,21 @@
+
 package model;
 
-public class Vendedor {
+import java.util.ArrayList;
 
-    public String nombre;
-    public String telefono;
-    public Producto[] productos; 
+public class Vendedor implements Persona{
+    private String nombre;
+    private String telefono;
+    
+    private ArrayList<Valoracion> valoraciones = new ArrayList<>();
 
-    public Vendedor(String nombre, String telefono, Producto[] productos) {
+    public Vendedor(String nombre, String telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
-        this.productos = productos;
     }
-
-    public String getNombre() {
+    
+    @Override
+    public String getNombre(){
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public Producto[] getProductos() {
-        return productos;
-    }
-
-    public void setProductos(Producto[] productos) {
-        this.productos = productos;
-    }    
 }

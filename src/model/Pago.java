@@ -1,23 +1,24 @@
 package model;
 
 public class Pago {
-
-    private MetodoDePago metodo;
-
-    public Pago(MetodoDePago metodo) {
-        this.metodo = metodo;
+    private double importe;
+    
+    private MetodoDePago metodoDePago;
+    private CodigoDePromocion codigoDePromocion;
+    
+    public Pago(double importe, MetodoDePago metodoDePago) {
+        this.importe = importe;
+        this.metodoDePago = metodoDePago;
+        this.codigoDePromocion = null;
     }
 
-    public MetodoDePago getMetodo() {
-        return metodo;
+    public Pago(
+        double importe, 
+        MetodoDePago metodoDePago, 
+        CodigoDePromocion codigoDePromocion
+    ) {
+        this.importe = importe;
+        this.metodoDePago = metodoDePago;
+        this.codigoDePromocion = codigoDePromocion;
     }
-
-    public void setMetodo(MetodoDePago metodo) {
-        this.metodo = metodo;
-    }
-
-    public void pagar(Double monto) {
-        metodo.pagar(monto);
-    }
-
 }

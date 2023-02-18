@@ -1,55 +1,16 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Mensaje {
+    private String contenido;
+    private LocalDate fecha;
+    
+    private Persona emisor;
 
-    public String emisor;
-    public String receptor;
-    public String contenido;
-    public Date date;
-
-    public Mensaje(String emisor, String receptor, String contenido, Date date) {
-        this.emisor = emisor;
-        this.receptor = receptor;
+    public Mensaje(String contenido, LocalDate fecha, Persona emisor) {
         this.contenido = contenido;
-        this.date = date;
-    }
-
-    public String getEmisor() {
-        return emisor;
-    }
-
-    public void setEmisor(String emisor) {
+        this.fecha = fecha;
         this.emisor = emisor;
-    }
-
-    public String getReceptor() {
-        return receptor;
-    }   
-
-    public void setReceptor(String receptor) {
-        this.receptor = receptor;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Mensaje{" + "emisor=" + emisor + ", receptor=" + receptor + ", contenido=" + contenido + ", date=" + date + '}';
     }   
 }

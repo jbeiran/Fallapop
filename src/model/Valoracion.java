@@ -1,28 +1,21 @@
+
 package model;
 
+
 public class Valoracion {
+    private String description;
+    private Integer estrellas;
+    
+    private Usuario publicador;
 
-    public String descripcion;
-    public Integer estrellas;
-
-    public Valoracion(String descripcion, Integer estrellas) {
-        this.descripcion = descripcion;
+    public Valoracion(String description, Integer estrellas, Usuario publicador) {
+        if(estrellas < 1 || estrellas > 5)
+            throw new IllegalArgumentException(
+                    "Las estrellas deben estar entre 1 y 5"
+            );
+        
+        this.description = description;
         this.estrellas = estrellas;
+        this.publicador = publicador;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getEstrellas() {
-        return estrellas;
-    }
-
-    public void setEstrellas(Integer estrellas) {
-        this.estrellas = estrellas;
-    }  
 }
