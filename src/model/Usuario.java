@@ -16,12 +16,21 @@ public class Usuario implements Persona{
             String nombre, 
             String telefono, 
             String contr, 
-            double sueldo
+            double saldo
     ){
+        this.nombreDeUsuario = nombreDeUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.contr = contr;
-        this.monedero = new Monedero(sueldo);
+        this.monedero = new Monedero(saldo);
+    }
+
+    public String getNombreDeUsuario() {
+        return nombreDeUsuario;
+    }
+
+    public String getContr() {
+        return contr;
     }
     
     @Override

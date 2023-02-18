@@ -2,9 +2,9 @@ package model;
 
 
 public class Monedero {
-    private double sueldo;
+    private double saldo;
 
-    public Monedero(double sueldo) {
-        this.sueldo = sueldo;
+    public Monedero(double saldo) {
+        this.saldo = saldo;
     }
 }

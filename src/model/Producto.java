@@ -15,5 +15,8 @@ public class Producto {
         this.vendedor = vendedor;
     }
     
+    public String getNombre(){
+        return nombre;
+    }
     
 }
