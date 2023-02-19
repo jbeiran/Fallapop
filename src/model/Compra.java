@@ -20,4 +20,22 @@ public class Compra {
     public Producto getProducto() {
         return producto;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(producto.toString());
+        sb.append(" | ");
+
+        sb.append(pago.toString());
+
+        if(envio != null){
+            sb.append(" | ");
+            sb.append(envio.toString());
+        }
+
+        return sb.toString();
+    }
 }
+

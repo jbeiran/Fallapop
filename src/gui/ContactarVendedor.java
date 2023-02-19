@@ -268,6 +268,7 @@ public class ContactarVendedor extends javax.swing.JFrame {
 
         jLabel4.setText("Valoraciones:");
 
+        valoracionesList.setFocusable(false);
         jScrollPane2.setViewportView(valoracionesList);
 
         chatTA.setColumns(20);

@@ -10,4 +10,9 @@ public class Envio {
         this.direccion = direccion;
         this.metodoDeEnvio = metodoDeEnvio;
     }
+
+    @Override
+    public String toString() {
+        return "Dirección: " + direccion + ", Método de envío: " + metodoDeEnvio;
+    }
 }

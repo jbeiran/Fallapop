@@ -21,4 +21,15 @@ public class Pago {
         this.metodoDePago = metodoDePago;
         this.codigoDePromocion = codigoDePromocion;
     }
+
+    @Override
+    public String toString() {
+        String s = "[ Importe: " + importe + ", Metodo de pago: " + metodoDePago;
+
+        if(codigoDePromocion != null){
+            s += ", Codigo de promocion" + codigoDePromocion;
+        }
+
+        return s + " ]";
+    }
 }

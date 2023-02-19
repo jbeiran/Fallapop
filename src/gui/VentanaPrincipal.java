@@ -36,27 +36,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         IniciarSesion iniciarSesion = new IniciarSesion(this, fallapop);
         Registrarse registrarse = new Registrarse(this, fallapop);
-        menuPrincipal = new MenuPrincipal(this, fallapop);
         
         panelPrincipal.add(iniciarSesion, INICIAR_SESION);
         panelPrincipal.add(registrarse, REGISTRAR);
-        panelPrincipal.add(menuPrincipal, MENU_PRINCIPAL);
 
         
         disposicion.show(panelPrincipal, INICIAR_SESION);
     }
 
     public void irRegistrar(){
+        Registrarse registrarse = new Registrarse(this, fallapop);
+        panelPrincipal.add(registrarse, REGISTRAR);
+
         disposicion.show(panelPrincipal, REGISTRAR);
     }
 
     public void irIniciarSesion(){
+        IniciarSesion iniciarSesion = new IniciarSesion(this, fallapop);
+        panelPrincipal.add(iniciarSesion, INICIAR_SESION);
+
         disposicion.show(panelPrincipal, INICIAR_SESION);
     }
 
     public void irMenuPrincipal(){
-                menuPrincipal.configurar();
-                disposicion.show(panelPrincipal, MENU_PRINCIPAL);
+        menuPrincipal = new MenuPrincipal(this, fallapop);
+        menuPrincipal.configurar();
+
+        panelPrincipal.add(menuPrincipal, MENU_PRINCIPAL);
+        disposicion.show(panelPrincipal, MENU_PRINCIPAL);
     }
 
     public MenuPrincipal getMenuPrincipal(){

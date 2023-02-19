@@ -69,6 +69,10 @@ public class Usuario implements Persona{
     public List<Producto> getFavoritos(){
         return favoritos;
     }
+
+    public ArrayList<Compra> getHistorial() {
+        return historial;
+    }
     
     @Override
     public String getNombre(){
