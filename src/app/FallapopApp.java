@@ -4,6 +4,7 @@ import gui.VentanaPrincipal;
 import model.Producto;
 import model.Vendedor;
 import model.Fallapop;
+import model.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,8 @@ public class FallapopApp {
     private static ArrayList<Producto> catalogo;
 
     private static void inicializar_model(Fallapop fallapop){
+        fallapop.registrarUsuario(new Usuario("rubisrage", "Rubén Santana", "789472", "123", 100.0));
+
         Vendedor vendedor1 = new Vendedor("Pepe", "66719038");
         Vendedor vendedor2 = new Vendedor("Jose", "78273283");
         Vendedor vendedor3 = new Vendedor("Dei", "82349924");
@@ -27,6 +30,7 @@ public class FallapopApp {
 
         
         fallapop.setCatalogo(catalogo);
+
         // TODO: Crear CodigoDePromocion
         fallapop.setCodigosDePromocion(null);
     }

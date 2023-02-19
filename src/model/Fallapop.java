@@ -8,9 +8,7 @@ public class Fallapop {
     private Catalogo catalogo;
     private ArrayList<CodigoDePromocion> codigosDePromocion;
 
-    public Fallapop() {
-        usuariosRegistrados.add(new Usuario("rubisrage", "Rubén Santana", "789472", "123", 100.0));
-    }
+    public Fallapop() {}
     
     public boolean registrarUsuario(Usuario nuevoUsuario){
         for(Usuario usuario : usuariosRegistrados){
