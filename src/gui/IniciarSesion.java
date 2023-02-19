@@ -2,37 +2,41 @@ package gui;
 
 import javax.swing.JOptionPane;
 
-import app.Fallapop;
+import model.Fallapop;
+
 
 public class IniciarSesion extends javax.swing.JPanel {
 
+    private VentanaPrincipal ventana;
     private Fallapop fallapop;
     
-    public IniciarSesion(Fallapop fallapop) {
+    public IniciarSesion(VentanaPrincipal ventana, Fallapop fallapop) {
         initComponents();
 
         iniciarInterfaz();
         
         this.fallapop = fallapop;
+        this.ventana = ventana;
     }
 
     public void iniciarInterfaz(){
         botonRegistrarse.addActionListener(e -> {
-            fallapop.irRegistrar();
+            ventana.irRegistrar();
         });
 
         botonIniciarSesion.addActionListener(e -> {
-            if(!fallapop.iniciarSesion(
-                        nombreDeUsuarioTF.getText(), 
-                        contraseñaPF.getText())
-              ){
+            if(fallapop.iniciarSesion(nombreDeUsuarioTF.getText(), contraseñaPF.getText())){
+
+                ventana.irMenuPrincipal();
+
+            } else {
                 JOptionPane.showMessageDialog(
-                        fallapop, 
+                        ventana, 
                         "Credenciales incorrectas.",
                         "Credenciales incorrectas",
                         JOptionPane.ERROR_MESSAGE
-                );
-              }
+                        );
+            }
         });
     }
 

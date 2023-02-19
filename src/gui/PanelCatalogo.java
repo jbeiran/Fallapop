@@ -1,59 +1,58 @@
 package gui;
 
-import app.Fallapop;
 
 import javax.swing.DefaultListModel;
+
+import model.Fallapop;
+import model.Catalogo;
 import model.Producto;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class Catalogo extends javax.swing.JPanel {
+public class PanelCatalogo extends javax.swing.JPanel {
 
+    private VentanaPrincipal ventana;
     private Fallapop fallapop;
 
-    public Catalogo(Fallapop fallapop) {
+    public PanelCatalogo(VentanaPrincipal ventana, Fallapop fallapop) {
         initComponents();
 
         this.fallapop = fallapop;
+        this.ventana = ventana;
 
-        catalogoList.setModel(buscar(""));
+        DefaultListModel<Producto> defaultListModel = new DefaultListModel<>();
+        defaultListModel.addAll(fallapop.getCatalogo().buscar(""));
+
+        catalogoList.setModel(defaultListModel);
 
         inicializarInterfaz();
     }
 
     private void inicializarInterfaz(){
         botonBuscar.addActionListener(e -> {
-            catalogoList.setModel(buscar(buscarTF.getText()));
+            DefaultListModel<Producto> defaultListModel = new DefaultListModel<>();
+            defaultListModel.addAll(fallapop.getCatalogo().buscar(buscarTF.getText()));
+
+            catalogoList.setModel(defaultListModel);
         });
 
         botonLimpiar.addActionListener(e -> {
-            catalogoList.setModel(buscar(""));
+            DefaultListModel<Producto> defaultListModel = new DefaultListModel<>();
+            defaultListModel.addAll(fallapop.getCatalogo().buscar(""));
+
+            catalogoList.setModel(defaultListModel);
+
             buscarTF.setText("");
         });
 
         catalogoList.addListSelectionListener(e -> {
             Producto seleccionado = catalogoList.getSelectedValue();
-            etiquetaDescripcion.setText(seleccionado.getDescripcion());
+
+            if(seleccionado != null)
+                etiquetaDescripcion.setText(seleccionado.getDescripcion());
+            else
+                etiquetaDescripcion.setText("");
         });
-    }
-
-    private DefaultListModel<Producto> buscar(String s){
-        ArrayList<Producto> catalogo = fallapop.getCatalogo();
-        DefaultListModel<Producto> listaFiltrada = new DefaultListModel<>();
-
-        String busqueda = s.toLowerCase();
-
-        if(s.isEmpty()) {
-            listaFiltrada.addAll(catalogo);
-        } else {
-            listaFiltrada.addAll(
-                    catalogo
-                    .stream()
-                    .filter(producto -> producto.getNombre().toLowerCase().startsWith(s))
-                    .collect(Collectors.toList()));
-        }
-
-        return listaFiltrada;
     }
 
     /**

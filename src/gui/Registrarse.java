@@ -2,24 +2,26 @@ package gui;
 
 import javax.swing.JOptionPane;
 
-import app.Fallapop;
+import model.Fallapop;
 import model.Usuario;
 
 public class Registrarse extends javax.swing.JPanel {
 
+    private VentanaPrincipal ventana;
     private Fallapop fallapop;
 
-    public Registrarse(Fallapop fallapop) {
+    public Registrarse(VentanaPrincipal ventana, Fallapop fallapop) {
         initComponents();
 
         iniciarInterfaz();
 
         this.fallapop = fallapop;
+        this.ventana = ventana;
     }
 
     private void iniciarInterfaz(){
         botonIniciarSesion.addActionListener(e -> {
-            fallapop.irIniciarSesion();
+            ventana.irIniciarSesion();
         });
 
         botonRegistrarse.addActionListener(e -> {
@@ -38,9 +40,11 @@ public class Registrarse extends javax.swing.JPanel {
                         100.0
                 );
 
-                if(!fallapop.registrarUsuario(usuario)){
+                if(fallapop.registrarUsuario(usuario)){
+                    ventana.irMenuPrincipal();
+                } else {
                     JOptionPane.showMessageDialog(
-                            fallapop, 
+                            ventana, 
                             "El usuario ya existe.",
                             "Usuario ya existente",
                             JOptionPane.ERROR_MESSAGE
@@ -48,7 +52,7 @@ public class Registrarse extends javax.swing.JPanel {
                 }
             } else {
                 JOptionPane.showMessageDialog(
-                        fallapop, 
+                        ventana, 
                         "Las contraseñas no coinciden.",
                         "Constraseñas distintas",
                         JOptionPane.ERROR_MESSAGE

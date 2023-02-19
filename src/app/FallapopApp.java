@@ -1,7 +1,9 @@
 package app;
 
+import gui.VentanaPrincipal;
 import model.Producto;
 import model.Vendedor;
+import model.Fallapop;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +12,7 @@ public class FallapopApp {
 
     private static ArrayList<Producto> catalogo;
 
-    private static void inicializaDatos(){
+    private static void inicializar_model(Fallapop fallapop){
         Vendedor vendedor1 = new Vendedor("Pepe", "66719038");
         Vendedor vendedor2 = new Vendedor("Jose", "78273283");
         Vendedor vendedor3 = new Vendedor("Dei", "82349924");
@@ -22,10 +24,17 @@ public class FallapopApp {
             new Producto("Manta", 20.0, "De seda de muy buena calidad", vendedor3),
             new Producto("Cacharro para Perro", 7.0, "Muy poco uso.", vendedor2)
         ));
+
+        
+        fallapop.setCatalogo(catalogo);
+        // TODO: Crear CodigoDePromocion
+        fallapop.setCodigosDePromocion(null);
     }
 
     public static void main(String[] args) {
-        inicializaDatos();
+        Fallapop fallapop = new Fallapop();
+
+        inicializar_model(fallapop);
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -40,19 +49,19 @@ public class FallapopApp {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fallapop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fallapop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fallapop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fallapop.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Fallapop(catalogo, null).setVisible(true);
+            new VentanaPrincipal(fallapop).setVisible(true);
         });
     }   
 }
