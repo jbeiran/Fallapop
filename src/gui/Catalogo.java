@@ -17,11 +17,31 @@ public class Catalogo extends javax.swing.JPanel {
         this.fallapop = fallapop;
 
         catalogoList.setModel(buscar(""));
+
+        inicializarInterfaz();
+    }
+
+    private void inicializarInterfaz(){
+        botonBuscar.addActionListener(e -> {
+            catalogoList.setModel(buscar(buscarTF.getText()));
+        });
+
+        botonLimpiar.addActionListener(e -> {
+            catalogoList.setModel(buscar(""));
+            buscarTF.setText("");
+        });
+
+        catalogoList.addListSelectionListener(e -> {
+            Producto seleccionado = catalogoList.getSelectedValue();
+            etiquetaDescripcion.setText(seleccionado.getDescripcion());
+        });
     }
 
     private DefaultListModel<Producto> buscar(String s){
         ArrayList<Producto> catalogo = fallapop.getCatalogo();
         DefaultListModel<Producto> listaFiltrada = new DefaultListModel<>();
+
+        String busqueda = s.toLowerCase();
 
         if(s.isEmpty()) {
             listaFiltrada.addAll(catalogo);
@@ -29,7 +49,7 @@ public class Catalogo extends javax.swing.JPanel {
             listaFiltrada.addAll(
                     catalogo
                     .stream()
-                    .filter(producto -> producto.getNombre().startsWith(s))
+                    .filter(producto -> producto.getNombre().toLowerCase().startsWith(s))
                     .collect(Collectors.toList()));
         }
 
@@ -48,50 +68,55 @@ public class Catalogo extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         catalogoList = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        botonContactar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         etiquetaDescripcion = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         buscarTF = new javax.swing.JTextField();
         botonBuscar = new javax.swing.JButton();
+        botonLimpiar = new javax.swing.JButton();
 
         jScrollPane2.setViewportView(catalogoList);
 
-        jButton1.setText("jButton1");
+        botonContactar.setText("Contactar con el vendedor");
 
-        jLabel2.setText("Descripción del productor:");
+        jLabel2.setText("Descripción del producto:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(70, 70, 70))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonContactar)
+                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(etiquetaDescripcion))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 93, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addComponent(botonContactar)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etiquetaDescripcion)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel1.setText("Buscar:");
 
         botonBuscar.setText("Buscar");
+
+        botonLimpiar.setText("Limpiar búsqueda");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -102,18 +127,21 @@ public class Catalogo extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(buscarTF, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
+                .addGap(34, 34, 34)
                 .addComponent(botonBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonLimpiar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(buscarTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar))
+                    .addComponent(botonBuscar)
+                    .addComponent(botonLimpiar))
                 .addGap(16, 16, 16))
         );
 
@@ -147,10 +175,11 @@ public class Catalogo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonContactar;
+    private javax.swing.JButton botonLimpiar;
     private javax.swing.JTextField buscarTF;
     private javax.swing.JList<Producto> catalogoList;
     private javax.swing.JLabel etiquetaDescripcion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

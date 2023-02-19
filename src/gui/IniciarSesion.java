@@ -49,7 +49,7 @@ public class IniciarSesion extends javax.swing.JPanel {
 
         jLabel1.setText("Nombre de usuario:");
 
-        jLabel2.setText("Contraseña");
+        jLabel2.setText("Contraseña:");
 
         botonIniciarSesion.setText("Iniciar sesión");
 

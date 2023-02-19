@@ -18,5 +18,17 @@ public class Producto {
     public String getNombre(){
         return nombre;
     }
-    
+
+    public String getDescripcion(){
+        return descripcion;
+    }
+
+    public Vendedor getVendedor(){
+        return vendedor;
+    }
+
+    @Override
+    public String toString(){
+        return nombre + " - Precio propuesto: " + precio + " €";
+    }
 }

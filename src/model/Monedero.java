@@ -7,4 +7,8 @@ public class Monedero {
     public Monedero(double saldo) {
         this.saldo = saldo;
     }
+
+    public double getSaldo(){
+        return saldo;
+    }
 }

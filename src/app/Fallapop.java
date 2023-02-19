@@ -4,6 +4,7 @@ import gui.IniciarSesion;
 import gui.Registrarse;
 import gui.MenuPrincipal;
 import java.awt.CardLayout;
+
 import javax.swing.JPanel;
 import java.util.ArrayList;
 import model.CodigoDePromocion;
@@ -29,12 +30,15 @@ public class Fallapop extends javax.swing.JFrame {
 
         this.catalogo = catalogo;
         this.codigosDePromocion = codigosDePromocion;
+
+        usuariosRegistrados.add(new Usuario("rubisrage", "Rubén", "789472", "123", 100.0));
         
         iniciarInterfaz();
     }
     
-    JPanel panelPrincipal;
-    CardLayout disposicion;
+    private JPanel panelPrincipal;
+    private CardLayout disposicion;
+    private MenuPrincipal menuPrincipal;
     
     private void iniciarInterfaz(){
         panelPrincipal = new JPanel();
@@ -46,7 +50,7 @@ public class Fallapop extends javax.swing.JFrame {
         
         IniciarSesion iniciarSesion = new IniciarSesion(this);
         Registrarse registrarse = new Registrarse(this);
-        MenuPrincipal menuPrincipal = new MenuPrincipal(this);
+        menuPrincipal = new MenuPrincipal(this);
         
         panelPrincipal.add(iniciarSesion, INICIAR_SESION);
         panelPrincipal.add(registrarse, REGISTRAR);
@@ -84,6 +88,7 @@ public class Fallapop extends javax.swing.JFrame {
                     && usuario.getContr().equals(contr)
             ){
                 usuarioLogeado = usuario;
+                menuPrincipal.configurar();
                 disposicion.show(panelPrincipal, MENU_PRINCIPAL);
                 return true;
             }
@@ -100,5 +105,9 @@ public class Fallapop extends javax.swing.JFrame {
 
     public ArrayList<Producto> getCatalogo(){
         return this.catalogo;
+    }
+
+    public Usuario getUsuarioLogeado(){
+        return usuarioLogeado;
     }
 }

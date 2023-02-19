@@ -32,6 +32,10 @@ public class Usuario implements Persona{
     public String getContr() {
         return contr;
     }
+
+    public Monedero getMonedero() {
+        return monedero;
+    }
     
     @Override
     public String getNombre(){
