@@ -55,8 +55,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     public void configurar(){
         Usuario usuario = fallapop.getUsuarioLogeado();
 
-        Monedero monedero = usuario.getMonedero();
-        etiquetaSaldo.setText("Saldo: " + monedero.getSaldo() + " €");
+        actualizarSaldo();
 
         etiquetaNombre.setText(usuario.getNombre());
     }
@@ -72,6 +71,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
     public void irPanelCatalogo(){
         disposicion.show(subPanel, CATALOGO);
+    }
+
+    public void actualizarSaldo(){
+        Monedero monedero = fallapop.getUsuarioLogeado().getMonedero();
+        etiquetaSaldo.setText("Saldo: " + monedero.getSaldo() + " €");
     }
 
     /**

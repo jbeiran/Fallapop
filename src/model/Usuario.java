@@ -46,6 +46,22 @@ public class Usuario implements Persona{
         return false;
     }
 
+    public boolean hacerCompra(Compra compra, boolean monedero){
+
+        if(monedero){
+            if(this.monedero.pagar(compra.getProducto().getPrecio())) {
+                historial.add(compra);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        historial.add(compra);
+        return true;
+    }
+
+
     public boolean eliminarFavorito(Producto favorito){
         return favoritos.remove(favorito);
     }
@@ -57,19 +73,5 @@ public class Usuario implements Persona{
     @Override
     public String getNombre(){
         return nombre;
-    }
-
-
-    //TODO: Delete if not used
-    @Override 
-    public boolean equals(Object obj){
-        if(obj instanceof Usuario){
-            Usuario otro = (Usuario) obj;
-
-            return nombreDeUsuario.equals(otro.nombreDeUsuario)
-                && contr.equals(otro.contr);
-        }
-
-        return false;
     }
 }

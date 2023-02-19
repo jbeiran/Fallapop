@@ -19,6 +19,10 @@ public class Producto {
         return nombre;
     }
 
+    public double getPrecio() {
+        return precio;
+    }
+
     public String getDescripcion(){
         return descripcion;
     }

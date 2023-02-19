@@ -87,7 +87,7 @@ public class PanelCatalogo extends javax.swing.JPanel {
             Producto seleccionado = catalogoList.getSelectedValue();
 
             if(seleccionado != null){
-                new ContactarVendedor(fallapop, seleccionado).setVisible(true);
+                new ContactarVendedor(ventana, fallapop, seleccionado).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(
                         ventana,

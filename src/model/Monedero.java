@@ -11,4 +11,13 @@ public class Monedero {
     public double getSaldo(){
         return saldo;
     }
+
+    public boolean pagar(double importe){
+        if(saldo > importe){
+            saldo -= importe;
+            return true;
+        }
+
+        return false;
+    }
 }

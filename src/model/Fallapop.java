@@ -62,8 +62,4 @@ public class Fallapop {
     public Chat crearChat(){
         return new Chat();
     }
-
-    public void recibirRespuesta(Chat chat, Vendedor vendedor){
-        chat.enviarMensaje(vendedor, "Buenas ¿En que puedo ayudarle?");
-    }
 }

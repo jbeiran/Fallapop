@@ -59,4 +59,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 disposicion.show(panelPrincipal, MENU_PRINCIPAL);
     }
 
+    public MenuPrincipal getMenuPrincipal(){
+        return menuPrincipal;
+    }
 }
