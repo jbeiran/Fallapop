@@ -26,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
 
     private CardLayout disposicion;
+    private Favoritos favoritos;
 
     public void iniciarInterfaz(){
         botonMenuPrincipal.addActionListener(e -> {
@@ -42,9 +43,11 @@ public class MenuPrincipal extends javax.swing.JPanel {
 
         PanelCatalogo catalogo = new PanelCatalogo(ventana, fallapop);
         Navegador navegador = new Navegador(this);
+        favoritos = new Favoritos(ventana, fallapop);
 
         subPanel.add(catalogo, CATALOGO);
         subPanel.add(navegador, NAVEGADOR);
+        subPanel.add(favoritos, FAVORITOS);
 
         disposicion.show(subPanel, NAVEGADOR);
     }
@@ -63,6 +66,7 @@ public class MenuPrincipal extends javax.swing.JPanel {
     }
 
     public void irListaFavoritos(){
+        favoritos.configurar();
         disposicion.show(subPanel, FAVORITOS);
     }
 

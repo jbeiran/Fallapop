@@ -2,12 +2,10 @@ package gui;
 
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 import model.Fallapop;
-import model.Catalogo;
 import model.Producto;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class PanelCatalogo extends javax.swing.JPanel {
 
@@ -53,6 +51,53 @@ public class PanelCatalogo extends javax.swing.JPanel {
             else
                 etiquetaDescripcion.setText("");
         });
+
+        botonFavoritos.addActionListener(e -> {
+            Producto seleccionado = catalogoList.getSelectedValue();
+
+            if(seleccionado == null) {
+                JOptionPane.showMessageDialog(
+                        ventana, 
+                        "No ha seleccionado ningún producto.", 
+                        "Error: Ningún producto seleccionado", 
+                        JOptionPane.ERROR_MESSAGE
+                );
+
+                return;
+            }
+
+            if(fallapop.getUsuarioLogeado().añadirFavorito(seleccionado))
+                JOptionPane.showMessageDialog(
+                        ventana, 
+                        "Producto añadido a favoritos correctamente.", 
+                        "Éxito", 
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            else
+                JOptionPane.showMessageDialog(
+                        ventana, 
+                        "Este producto ya está en favoritos.", 
+                        "Error: Producto ya en favoritos", 
+                        JOptionPane.ERROR_MESSAGE
+                );
+
+        });
+
+        botonContactar.addActionListener(e -> {
+            Producto seleccionado = catalogoList.getSelectedValue();
+
+            if(seleccionado != null){
+                new ContactarVendedor(fallapop, seleccionado).setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(
+                        ventana,
+                        "No ha seleccionado ningún producto.",
+                        "Error: Ningún producto seleccionado",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+        });
     }
 
     /**
@@ -70,6 +115,7 @@ public class PanelCatalogo extends javax.swing.JPanel {
         botonContactar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         etiquetaDescripcion = new javax.swing.JLabel();
+        botonFavoritos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         buscarTF = new javax.swing.JTextField();
@@ -82,33 +128,42 @@ public class PanelCatalogo extends javax.swing.JPanel {
 
         jLabel2.setText("Descripción del producto:");
 
+        etiquetaDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        etiquetaDescripcion.setAlignmentY(0.0F);
+
+        botonFavoritos.setText("Añadir a favoritos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonContactar)
-                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 93, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 93, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(botonFavoritos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonContactar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addComponent(botonFavoritos)
+                .addGap(14, 14, 14)
                 .addComponent(botonContactar)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel2)
+                .addGap(12, 12, 12)
+                .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Buscar:");
@@ -164,9 +219,9 @@ public class PanelCatalogo extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -175,6 +230,7 @@ public class PanelCatalogo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonContactar;
+    private javax.swing.JButton botonFavoritos;
     private javax.swing.JButton botonLimpiar;
     private javax.swing.JTextField buscarTF;
     private javax.swing.JList<Producto> catalogoList;

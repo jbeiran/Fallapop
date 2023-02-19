@@ -1,18 +1,10 @@
 package gui;
 
-import gui.IniciarSesion;
-import gui.Registrarse;
-import gui.MenuPrincipal;
 import java.awt.CardLayout;
-
 import javax.swing.JPanel;
 
 import model.Fallapop;
 
-import java.util.ArrayList;
-import model.CodigoDePromocion;
-import model.Producto;
-import model.Usuario;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 

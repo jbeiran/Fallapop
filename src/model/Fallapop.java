@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 
-
 public class Fallapop {
     private Usuario usuarioLogeado = null;
     private ArrayList<Usuario> usuariosRegistrados = new ArrayList<>();
@@ -10,7 +9,7 @@ public class Fallapop {
     private ArrayList<CodigoDePromocion> codigosDePromocion;
 
     public Fallapop() {
-        usuariosRegistrados.add(new Usuario("rubisrage", "Rubén", "789472", "123", 100.0));
+        usuariosRegistrados.add(new Usuario("rubisrage", "Rubén Santana", "789472", "123", 100.0));
     }
     
     public boolean registrarUsuario(Usuario nuevoUsuario){
@@ -58,5 +57,13 @@ public class Fallapop {
 
     public void setCodigosDePromocion(ArrayList<CodigoDePromocion> codigos){
         this.codigosDePromocion = codigos;
+    }
+
+    public Chat crearChat(){
+        return new Chat();
+    }
+
+    public void recibirRespuesta(Chat chat, Vendedor vendedor){
+        chat.enviarMensaje(vendedor, "Buenas ¿En que puedo ayudarle?");
     }
 }

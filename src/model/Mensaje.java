@@ -1,16 +1,22 @@
 package model;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Mensaje {
     private String contenido;
-    private LocalDate fecha;
+    private LocalTime hora;
     
     private Persona emisor;
 
-    public Mensaje(String contenido, LocalDate fecha, Persona emisor) {
+    public Mensaje(String contenido, LocalTime hora, Persona emisor) {
         this.contenido = contenido;
-        this.fecha = fecha;
+        this.hora = hora.truncatedTo(ChronoUnit.MINUTES);
         this.emisor = emisor;
     }   
+
+    @Override
+    public String toString() {
+        return "[ " + hora.toString() + " ] " + emisor.getNombre() + ": " + contenido;
+    }
 }

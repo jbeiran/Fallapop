@@ -28,6 +28,16 @@ public class Producto {
     }
 
     @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Producto))
+            return false;
+
+        Producto otro = (Producto) obj;
+
+        return nombre.equals(otro.nombre);
+    }
+
+    @Override
     public String toString(){
         return nombre + " - Precio propuesto: " + precio + " €";
     }
